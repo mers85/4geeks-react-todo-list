@@ -26,7 +26,16 @@ export function Home() {
 	}
 
 	function deleteTask(event, task_id) {
-		setTasks(tasks.filter(task => task.id !== task_id));
+		let newTasks = [...tasks];
+		let positionToDelete = -1;
+
+		for (let i = 0; i < newTasks.length && positionToDelete == -1; i++) {
+			positionToDelete = i;
+		}
+		if (positionToDelete > -1) {
+			newTasks.splice(positionToDelete, 1);
+			setTasks(newTasks);
+		}
 	}
 
 	return (
