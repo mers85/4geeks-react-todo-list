@@ -7,27 +7,26 @@ import rigoImage from "../../img/rigo-baby.jpg";
 
 //create your first component
 export function TaskItem(props) {
+	const [hideButton, setHideButton] = useState("d-none");
 	function onClickDelete() {
 		props.onClickDelete(event, props.taskId);
 	}
 
-	function hideButton(event) {
-		event.target.lastChild.classList.add("d-none");
-	}
-	function showButton(e) {
-		event.target.lastChild.classList.remove("d-none");
-	}
 	return (
 		<li
 			className="list-group-item"
 			id={props.taskId}
-			onMouseOver={showButton}
-			onMouseLeave={hideButton}>
+			onMouseOver={event => {
+				setHideButton("");
+			}}
+			onMouseLeave={event => {
+				setHideButton("d-none");
+			}}>
 			{props.taskText}
 			<button
 				type="button"
 				onClick={onClickDelete}
-				className="close d-none">
+				className={"close " + hideButton}>
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</li>
