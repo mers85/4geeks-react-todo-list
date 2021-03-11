@@ -25,13 +25,16 @@ export function Home() {
 		setDraftTaskShow(draftTaskShow => (draftTaskShow = ""));
 	}
 
-	function deleteTask(task_id) {
+	function deleteTask(event, task_id) {
 		let newTasks = [...tasks];
 		let positionToDelete = -1;
 
-		for (let i = 0; i < newTasks.length && positionToDelete == -1; i++) {
-			positionToDelete = i;
-		}
+		positionToDelete = newTasks.findIndex(task => {
+			if (task.id === task_id) {
+				return true;
+			}
+		});
+
 		if (positionToDelete > -1) {
 			newTasks.splice(positionToDelete, 1);
 			setTasks(newTasks);
