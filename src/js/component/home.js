@@ -25,7 +25,7 @@ export function Home() {
 		setDraftTaskShow(draftTaskShow => (draftTaskShow = ""));
 	}
 
-	function deleteTask(event, task_id) {
+	function deleteTask(task_id) {
 		let newTasks = [...tasks];
 		let positionToDelete = -1;
 
